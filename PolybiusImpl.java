@@ -50,22 +50,20 @@ public class PolybiusImpl {
         while(true) {
             try {
                 System.out.print("Enter a Message to Encrypt: ");
-                String message = scanner.next();
-                setUserMessage(message);
+                setUserMessage(scanner.nextLine());
 
                 System.out.print("Enter a Secret Key: ");
-                String key = scanner.next();
-                setKey(key );
+                setKey(scanner.nextLine());
 
             }catch (Exception e) {
-                System.out.println("Invalid data! Cause: " + e.getCause());
+                System.out.println("Invalid data! Cause: " + e.getMessage());
                 continue;
             }
 
             while(true) {
                 try {
                     System.out.print("\nPress [E] to Encrypt [D] to Decrypt: ");
-                    String decision = scanner.nextLine();
+                    final String decision = scanner.nextLine().toString();
 
                     if(decision.trim().equalsIgnoreCase("E")) {
                         polybiusEncryption = new PolybiusEncryption(getKey(),getUserMessage());
@@ -74,21 +72,25 @@ public class PolybiusImpl {
 
                     }else if(decision.trim().equalsIgnoreCase("D")) {
 
-                        System.out.print("Please Enter the Encrypted Message: ");
+                        System.out.print("\nPlease Enter the Encrypted Message: ");
+
                         setDecryptedMessage(scanner.nextLine());
-                        Long decryption = Long.parseLong(getDecryptedMessage());
+                        final Long decryption = Long.parseLong(getDecryptedMessage());
+
                         polybiusDecryption = new PolybiusDecryption(getKey(), decryption);
+
                         System.out.println("Decrypted Message: " + polybiusDecryption.Decryption());
+
                         break;
                     }
                 }catch (Exception e) {
-                    System.out.println("Invalid data! Cause = " + e.getCause());
+                    System.out.println("Invalid data! Cause = " + e.getMessage());
                     continue;
                 }
             }
 
             System.out.print("Do you want to try another one? [Y/N]");
-            String yesOrNo = scanner.next();
+            final String yesOrNo = scanner.next();
 
             if(yesOrNo.trim().equalsIgnoreCase("Y")) {
                 continue;
