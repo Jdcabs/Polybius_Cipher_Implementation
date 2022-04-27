@@ -21,7 +21,7 @@ public class PolybiusEncryption {
         return key;
     }
 
-    public int Encryption() {
+    public String Encryption() {
         // The Final List where we stored the key message and the normal alphabet.
         ArrayList<ArrayList<Character>> alphabetWithKeyMessage = new ArrayList<>();
         // Here we permanently put the Characters of the key message.
@@ -56,9 +56,9 @@ public class PolybiusEncryption {
         }
 
         // Printing 2D ArrayList.
-        for (ArrayList<Character> temp: alphabetWithKeyMessage) {
+        /*for (ArrayList<Character> temp: alphabetWithKeyMessage) {
             System.out.println(temp);
-        }
+        }*/
 
         ArrayList<Integer> encryptedMessage = new ArrayList<>();
         for(int messageCounter = 0; messageCounter < getMessage().length(); messageCounter++) {
@@ -72,9 +72,16 @@ public class PolybiusEncryption {
             }
         }
 
-        int result = 0;
-        for (Integer integer : encryptedMessage) {
-            result = result * 10 + integer;
+        for(int i = 0; i < encryptedMessage.size(); i++){
+            int temp = encryptedMessage.get(i);
+            encryptedMessage.remove(i);
+            temp = temp + 1;
+            encryptedMessage.add(i, temp);
+        }
+
+        String result = "";
+        for(int i = 0; i < encryptedMessage.size(); i++) {
+            result = result + "" + Integer.parseInt(String.valueOf(encryptedMessage.get(i)));
         }
         return result;
     }
