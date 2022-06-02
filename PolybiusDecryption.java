@@ -2,14 +2,14 @@ import java.util.*;
 
 public class PolybiusDecryption {
 
-    private final String key;
-    private final Long encryptedMessage;
+    private String key;
+    private Long encryptedMessage;
 
-    PolybiusDecryption(String key, Long encryptedMessage) {
-        this.key = key;
-        this.encryptedMessage = encryptedMessage;
+    PolybiusDecryption(){}
+
+    public void setKey(String key) {this.key = key;}
+    public void setEncryptedMessage(Long encryptedMessage) {this.encryptedMessage = encryptedMessage;
     }
-
     public String getKey() {
         return key;
     }
@@ -17,6 +17,21 @@ public class PolybiusDecryption {
     public Long getEncryptedMessage() {
         return encryptedMessage;
     }
+
+    public void DecryptionImpl(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("\nPlease Enter the Encrypted Message: ");
+        String encryptedMessage = scanner.nextLine();
+        Long decryption = Long.parseLong(encryptedMessage);
+
+        System.out.print("Enter a Secret Key: ");
+        String key = scanner.nextLine();
+
+        setEncryptedMessage(decryption);
+        setKey(key);
+    }
+
     public String  Decryption() {
         // The Final List where we stored the key message and the normal alphabet.
         ArrayList<ArrayList<Character>> alphabetWithKeyMessage = new ArrayList<>();
@@ -52,9 +67,9 @@ public class PolybiusDecryption {
         }
 
         // Printing 2D ArrayList(table).
-        /*for (ArrayList<Character> temp: alphabetWithKeyMessage) {
+        for (ArrayList<Character> temp: alphabetWithKeyMessage) {
             System.out.println(temp);
-        }*/
+        }
 
         // Converting getEncryptedMessage to int Array.
             String temp = Long.toString(getEncryptedMessage());
@@ -72,7 +87,6 @@ public class PolybiusDecryption {
         }
 
         String result = "";
-        Character value;
         int first = 0;
         int second = 1;
         for(int i = 0; i < arrayList.size(); i = i + 2) {
