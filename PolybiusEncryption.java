@@ -1,17 +1,11 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class PolybiusEncryption {
 
-    private final String message;
-    private final String key;
+    private String message;
+    private String key;
 
-    PolybiusEncryption(String key, String message) {
-        this.key = key;
-        this.message = message;
-    }
+    PolybiusEncryption() {}
 
     public String getMessage() {
         return message;
@@ -19,6 +13,20 @@ public class PolybiusEncryption {
 
     public String getKey() {
         return key;
+    }
+
+    public void setMessage(String message) {this.message = message;}
+    public void setKey(String key) { this.key = key;}
+    public void EncryptionImpl() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a Message to Encrypt: ");
+        String userMessage = scanner.nextLine();
+
+        System.out.print("Enter a Secret Key: ");
+        String userKey = scanner.nextLine();
+
+        setMessage(userMessage);
+        setKey(userKey);
     }
 
     public String Encryption() {
@@ -56,9 +64,9 @@ public class PolybiusEncryption {
         }
 
         // Printing 2D ArrayList.
-        /*for (ArrayList<Character> temp: alphabetWithKeyMessage) {
+        for (ArrayList<Character> temp: alphabetWithKeyMessage) {
             System.out.println(temp);
-        }*/
+        }
 
         ArrayList<Integer> encryptedMessage = new ArrayList<>();
         for(int messageCounter = 0; messageCounter < getMessage().length(); messageCounter++) {
@@ -79,6 +87,7 @@ public class PolybiusEncryption {
             encryptedMessage.add(i, temp);
         }
 
+        // converting the Encrypted message to Integer.
         String result = "";
         for(int i = 0; i < encryptedMessage.size(); i++) {
             result = result + "" + Integer.parseInt(String.valueOf(encryptedMessage.get(i)));
